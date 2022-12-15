@@ -4,7 +4,7 @@ function getAllDirectors(array) {
   	return element.director;
   });
 
-  console.log(`EXERCICE 1: `, result);
+  //console.log(`EXERCICE 1: `, result);
   return result;
 }
 
@@ -14,7 +14,7 @@ function getMoviesFromDirector(array, director) {
     return movie.director == director;
   });
 
-  console.log(`EXERCICE 2: `, allHisMovies);
+  //console.log(`EXERCICE 2: `, allHisMovies);
   return allHisMovies;
 }
 
@@ -81,7 +81,6 @@ function orderByYear(array) {
   });
 
   return orderedByYear;
-
 }
 
 // Exercise 6: Calculate the average of the movies in a category
@@ -89,11 +88,12 @@ function orderByYear(array) {
 // Build function to calculate averages
 function moviesAverage(array) {
   const initialValue = 0;
-  const moviesAverageSum = array.reduce((accumulator, currentValue) => {
+  const noEmptyValues = array.filter(item => item.score != '');
+  const moviesAverageSum = noEmptyValues.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.score;
   }, initialValue);
 
-  const numberOfFilms = array.length;
+  const numberOfFilms = noEmptyValues.length;
   
   const moviesAverageScore = parseFloat((moviesAverageSum/numberOfFilms).toFixed(2));
 
@@ -115,16 +115,30 @@ function moviesAverageByCategory(array, category) {
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+// Exercise 7A: Transform duration into minutes
+function durationInMinutes(value) {
+  const minRegex = /(?<=\s)\d+(?=m)/gm;
+  const hourRegex = /\d+(?=h)/gm;
+  let minutes = parseInt(value.match(minRegex));
+  if (isNaN(minutes)) minutes = 0;
+  let hours = parseInt(value.match(hourRegex));
+  let newDuration = parseInt(hours*60+minutes);
+  return newDuration;
+}
 
+// Exercise 7B: Modify the duration of movies to minutes for a given array
+function hoursToMinutes(array) {
+  const arrayNewMovies = array.map(item => {
+    return {...item, duration: durationInMinutes(item.duration)};
+  });
+  
+  return arrayNewMovies;
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(array, year) {
+
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
