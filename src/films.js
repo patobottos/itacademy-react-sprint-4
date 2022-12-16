@@ -14,7 +14,6 @@ function getMoviesFromDirector(array, director) {
     return movie.director == director;
   });
 
-  //console.log(`EXERCICE 2: `, allHisMovies);
   return allHisMovies;
 }
 
@@ -31,12 +30,7 @@ function moviesAverageOfDirector(array, director) {
   const allTheScoresTwoDigits = parseFloat(allTheScores.toFixed(2));
   
   const average = parseFloat((allTheScoresTwoDigits/numberOfFilms).toFixed(2));
-/*
-  console.log('numberOfFilms', numberOfFilms);
-  console.log('allTheScores', allTheScores);
-  console.log('average',average);
-  console.log('average tipo:',typeof average);
-*/  
+ 
   return average;
 }
 
@@ -94,7 +88,6 @@ function moviesAverage(array) {
   }, initialValue);
 
   const numberOfFilms = noEmptyValues.length;
-  
   const moviesAverageScore = parseFloat((moviesAverageSum/numberOfFilms).toFixed(2));
 
   return moviesAverageScore;
@@ -136,8 +129,17 @@ function hoursToMinutes(array) {
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear(array, year) {
+function bestFilmOfYear(array, enteredYear) {
+  const arrayFilmsOfYear = array.filter(item => item.year == enteredYear);
+  
+  const bestFilm = arrayFilmsOfYear.reduce((previous, current) => {
+    return (previous.score > current.score) ? previous : current;
+  });
 
+  const result = [];
+  result.push(bestFilm);
+  // console.log(result);
+  return result;
 }
 
 // The following is required to make unit tests work.
