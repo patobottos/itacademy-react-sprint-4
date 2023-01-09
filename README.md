@@ -4,7 +4,7 @@ MENTOR: Pablo Monteserín.
 
 ALUMNE: Patricio Bottos. 
 
-LLOC I DATA: Barcelona, desembre de 2022 - gener 2023.
+LLOC I DATA: Barcelona, desembre de 2022.
 
 
 Lliurament de l'sprint 4 de l'Itinerari de React de la IT Academy.
